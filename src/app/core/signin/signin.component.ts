@@ -16,7 +16,9 @@ export class SigninComponent implements OnInit {
   constructor( private socialAuthService: AuthService, private formBuilder: FormBuilder) { }
 
   ngOnInit () {
-    this.signInForm = this.formBuilder.group({        
+    this.signInForm = this.formBuilder.group({  
+        firstName: ['', [Validators.required]],
+        lastName: ['', [Validators.required]],     
         email: ['', [Validators.required, Validators.email]],
         password: ['', [Validators.required, Validators.minLength(6)]],
         confirmPswrd: ['', [Validators.required, Validators.minLength(6)]]
