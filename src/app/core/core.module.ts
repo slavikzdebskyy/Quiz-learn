@@ -6,7 +6,7 @@ import {  SocialLoginModule, AuthServiceConfig,
 import { FACEBOOK_APP_ID, GOOGLE_APP_ID } from 'src/environments/social.config';
 
 import { HeaderComponent } from './header/header.component';
-import { SigninComponent } from './signin/signin.component';
+import { SigninComponent } from './signin/sign-in.component';
 import { LoginComponent } from './login/login.component';
 import { SocialAuthComponent } from './social-auth/social-auth.component';
 
