@@ -1,9 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import {
-  AuthService,
-  FacebookLoginProvider,
-  GoogleLoginProvider
-} from 'angular5-social-login';
+import { Component, OnInit } from '@angular/core';
+import { AuthService, FacebookLoginProvider,
+  GoogleLoginProvider } from 'angular5-social-login';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
