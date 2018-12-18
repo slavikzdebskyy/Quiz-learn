@@ -1,6 +1,6 @@
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
 @import '../signin/sign-in.component.scss';
-@import './../../../scss_modules/mixins';
+@import './../../../../scss_modules/mixins';
 
 .social-btns-container {
   @include flex(column, center, space-around);

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService, FacebookLoginProvider,
-  GoogleLoginProvider } from 'angular5-social-login';
+import { AuthService, FacebookLoginProvider, GoogleLoginProvider } from 'angular5-social-login';
 
 @Component({
   selector: 'app-social-auth',
@@ -17,18 +16,18 @@ export class SocialAuthComponent implements OnInit {
 
   socialSignIn (socialPlatform: string) {
     let socialPlatformProvider;
-    if (socialPlatform === 'facebook') {
-      socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
-    } else if (socialPlatform === 'google') {
-      socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
+    switch (socialPlatform) {
+      case 'facebook':
+        socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
+        break;
+      case 'google':
+        socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
+        break;
     }
-
-    this.socialAuthService.signIn(socialPlatformProvider).then(
-      (userData) => {
+    this.socialAuthService.signIn(socialPlatformProvider)
+      .then(userData => {
         console.log(socialPlatform + ' sign in data : ' , userData);
         // Now sign-in with userData
-
-
       }
     );
   }

@@ -4,24 +4,35 @@ header {
   @include flex(row, center, space-between);
   width: 100%;
   height: 80px;
-  padding: 0 30px; 
+  padding: 0 30px;
   background-color: #4257b2;
   color: #fff;
-  .sign-in {
+}
+
+h2 {
+  font-size: 32px;
+  margin: 0;
+  letter-spacing: 2px;
+  color: #3ccfcf;
+}
+
+span {
+  letter-spacing: 1px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.3s;
+  padding: 15px 50px;
+  &.sign-in {
     background-color: #3ccfcf;
-    padding: 15px 50px;
-    letter-spacing: 1px;
     border-radius: 4px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: 0.3s;
     &:hover {
-      background-color: lighten($color: #3ccfcf, $amount: 10%)
+      background-color: lighten($color: #3ccfcf, $amount: 10%);
     }
   }
-  h2 {
-    font-size: 32px;
-    margin: 0;
-    letter-spacing: 2px;
+  &.login {
+    color: #3ccfcf;
+    &:hover {
+      color: #fff;
+    }
   }
 }
