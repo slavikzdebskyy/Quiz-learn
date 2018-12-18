@@ -7,6 +7,7 @@ import { FACEBOOK_APP_ID, GOOGLE_APP_ID } from 'src/environments/social.config';
 
 import { HeaderComponent } from './header/header.component';
 import { SigninComponent } from './signin/signin.component';
+import { LoginComponent } from './login/login.component';
 
 export function getAuthServiceConfigs () {
   let config = new AuthServiceConfig (
@@ -34,9 +35,10 @@ export function getAuthServiceConfigs () {
   ],
   exports: [
     HeaderComponent,
-    SigninComponent
+    SigninComponent,
+    LoginComponent
   ],
-  declarations: [HeaderComponent, SigninComponent],
+  declarations: [HeaderComponent, SigninComponent, LoginComponent],
   providers: [
     {
       provide: AuthServiceConfig,

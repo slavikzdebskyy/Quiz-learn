@@ -1,0 +1,28 @@
+<div class="sing-up-container">  
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <h2>Sign in</h2>     
+    <label>
+      <input placeholder=" " type="email" formControlName="email" [ngClass]="{ 'not-valid': logined && form.email.errors }">
+      <span class="placeholder">Type your email...</span>
+      <span class="error-validation"  *ngIf="logined && form['email'].errors">Enter correct email</span>
+    </label>
+    <label>        
+        <input placeholder=" " type="password" formControlName="password" [ngClass]="{ 'not-valid': logined && form.password.errors }">
+        <span class="placeholder">Type your password...</span>
+        <span class="error-validation" *ngIf="logined && form['password'].errors">Enter password</span>
+    </label>    
+    <button type="submit">Login</button>    
+    <div class="social-btns-container">
+      <button (click)="socialSignIn('facebook')" class="fa fa-facebook"><span>Login with Facebook</span></button> 
+      <button (click)="socialSignIn('google')" class="fa fa-google"><span>Login with Google</span></button>
+    </div>
+  </form>  
+</div>
+  
+    
+    
+  
+  
+    
+  
+  
