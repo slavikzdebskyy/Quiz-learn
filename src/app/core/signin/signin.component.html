@@ -1,6 +1,6 @@
-<div class="sing-up-container">  
+<div class="sing-up-container">
   <form [formGroup]="signInForm" (ngSubmit)="signIn()">
-    <h2>Sign in</h2> 
+    <h2>Sign in</h2>
     <label>
       <input placeholder=" " type="text" formControlName="firstName" [ngClass]="{ 'not-valid': submitted && form.firstName.errors }">
       <span class="placeholder">Type your first name...</span>
@@ -10,35 +10,32 @@
       <input placeholder=" " type="text" formControlName="lastName" [ngClass]="{ 'not-valid': submitted && form.lastName.errors }">
       <span class="placeholder">Type your last name...</span>
       <span class="error-validation"  *ngIf="submitted && form['lastName'].errors">Enter correct last name</span>
-    </label>   
+    </label>
     <label>
       <input placeholder=" " type="email" formControlName="email" [ngClass]="{ 'not-valid': submitted && form.email.errors }">
       <span class="placeholder">Type your email...</span>
       <span class="error-validation"  *ngIf="submitted && form['email'].errors">Enter correct email</span>
     </label>
-    <label>        
+    <label>
         <input placeholder=" " type="password" formControlName="password" [ngClass]="{ 'not-valid': submitted && form.password.errors }">
         <span class="placeholder">Type your password...</span>
         <span class="error-validation" *ngIf="submitted && form['password'].errors">Enter password</span>
         <span class="error-validation" *ngIf="submitted && !isPasswordsEqual">Passwords in not equal</span>
     </label>
-    <label>        
+    <label>
         <input  placeholder=" " type="password" formControlName="confirmPswrd" [ngClass]="{ 'not-valid': submitted && form.confirmPswrd.errors }">
         <span class="placeholder">Confirm your password...</span>
         <span class="error-validation" *ngIf="submitted && form['confirmPswrd'].errors">Enter password</span>
         <span class="error-validation" *ngIf="submitted && !isPasswordsEqual">Passwords in not equal</span>
     </label>
-    <button type="submit">Sign-in</button>    
-    <div class="social-btns-container">
-      <button (click)="socialSignIn('facebook')" class="fa fa-facebook"><span>Login with Facebook</span></button> 
-      <button (click)="socialSignIn('google')" class="fa fa-google"><span>Login with Google</span></button>
-    </div>
-  </form>  
+    <button type="submit">Sign-in</button>
+    <app-social-auth></app-social-auth>
+  </form>
 </div>
 
-	
-	
 
 
-	
+
+
+
 
