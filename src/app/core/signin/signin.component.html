@@ -1,0 +1,34 @@
+<div class="sing-up-container">  
+  <form [formGroup]="signInForm" (ngSubmit)="signIn()">
+    <h2>Sign in</h2>    
+    <label>
+      <input placeholder=" " type="email" formControlName="email" [ngClass]="{ 'not-valid': submitted && form.email.errors }">
+      <span class="placeholder">Type your email...</span>
+      <span class="error-validation"  *ngIf="submitted && form['email'].errors">Enter correct email</span>
+    </label>
+    <label>        
+        <input placeholder=" " type="password" formControlName="password" [ngClass]="{ 'not-valid': submitted && form.password.errors }">
+        <span class="placeholder">Type your password...</span>
+        <span class="error-validation" *ngIf="submitted && form['password'].errors">Enter password</span>
+        <span class="error-validation" *ngIf="submitted && !isPasswordsEqual">Passwords in not equal</span>
+    </label>
+    <label>        
+        <input  placeholder=" " type="password" formControlName="confirmPswrd" [ngClass]="{ 'not-valid': submitted && form.confirmPswrd.errors }">
+        <span class="placeholder">Confirm your password...</span>
+        <span class="error-validation" *ngIf="submitted && form['confirmPswrd'].errors">Enter password</span>
+        <span class="error-validation" *ngIf="submitted && !isPasswordsEqual">Passwords in not equal</span>
+    </label>
+    <button type="submit">Sign-in</button>    
+  </form>
+  <div class="social-btns-container">
+      <button (click)="socialSignIn('facebook')"></button> 
+      <button (click)="socialSignIn('google')"></button>
+  </div>
+</div>
+
+	
+	
+
+
+	
+
