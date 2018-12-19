@@ -5,7 +5,7 @@ import {  SocialLoginModule, AuthServiceConfig } from 'angular5-social-login';
 
 import getAuthServiceConfigs from './get-auth-service-configs';
 
-import { SigninComponent } from './signin/sign-in.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
 import { LoginComponent } from './login/login.component';
 import { SocialAuthComponent } from './social-auth/social-auth.component';
 
@@ -16,11 +16,11 @@ import { SocialAuthComponent } from './social-auth/social-auth.component';
     SocialLoginModule,
   ],
   exports: [
-    SigninComponent,
+    SignUpComponent,
     LoginComponent,
     SocialAuthComponent
   ],
-  declarations: [SigninComponent, LoginComponent, SocialAuthComponent],
+  declarations: [SignUpComponent, LoginComponent, SocialAuthComponent],
   providers: [
     {
       provide: AuthServiceConfig,

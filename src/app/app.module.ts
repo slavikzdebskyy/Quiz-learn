@@ -1,11 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { RouterModule } from '@angular/router';
 
 import { CoreModule } from './core/core.module';
 import { AuthorizationModule } from './core/authorization/authorization.module';
 
 import { AppComponent } from './app.component';
-import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { routers } from './app.routes';
 
 
 @NgModule({
@@ -16,6 +18,7 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
     BrowserModule,
     CoreModule,
     AuthorizationModule,
+    RouterModule.forRoot(routers),
     MDBBootstrapModule.forRoot()
   ],
   providers: [],

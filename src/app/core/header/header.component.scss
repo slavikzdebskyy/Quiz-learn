@@ -22,6 +22,8 @@ span {
   cursor: pointer;
   transition: 0.3s;
   padding: 15px 50px;
+  border: none;
+  outline: none;
   &.sign-in {
     background-color: #3ccfcf;
     border-radius: 4px;
