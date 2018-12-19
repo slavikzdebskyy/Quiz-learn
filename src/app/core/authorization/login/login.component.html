@@ -11,7 +11,15 @@
         <span class="placeholder">Type your password...</span>
         <span class="error-validation" *ngIf="logined && form['password'].errors">Enter password</span>
     </label>
-    <button type="submit">Login</button>
+    <button type="submit">
+      <span *ngIf="logined">
+        <i class="fa fa-spinner fa-spin"></i>
+        Loading ...
+      </span>
+      <span *ngIf="!logined">
+        Login
+      </span>
+    </button>
     <app-social-auth></app-social-auth>
   </form>
 </div>

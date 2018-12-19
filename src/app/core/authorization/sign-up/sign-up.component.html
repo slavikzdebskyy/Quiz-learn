@@ -1,6 +1,6 @@
 <div class="sing-up-container">
-  <form [formGroup]="signInForm" (ngSubmit)="signIn()">
-    <h2>Sign in</h2>
+  <form [formGroup]="signUpForm" (ngSubmit)="signUp()">
+    <h2>Sign up</h2>
     <label>
       <input placeholder=" " type="text" formControlName="firstName" [ngClass]="{ 'not-valid': submitted && form.firstName.errors }">
       <span class="placeholder">Type your first name...</span>
@@ -28,7 +28,15 @@
         <span class="error-validation" *ngIf="submitted && form['confirmPswrd'].errors">Enter password</span>
         <span class="error-validation" *ngIf="submitted && !isPasswordsEqual">Passwords in not equal</span>
     </label>
-    <button type="submit">Sign-in</button>
+    <button type="submit">
+      <span *ngIf="submitted">
+        <i class="fa fa-spinner fa-spin"></i>
+        Loading ...
+      </span>
+      <span *ngIf="!submitted">
+        Sign-up
+      </span>
+    </button>
     <app-social-auth></app-social-auth>
   </form>
 </div>

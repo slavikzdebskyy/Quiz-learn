@@ -8,13 +8,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class SignUpComponent implements OnInit {
 
-  signInForm: FormGroup;
+  signUpForm: FormGroup;
   submitted = false;
 
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit () {
-    this.signInForm = this.formBuilder.group({
+    this.signUpForm = this.formBuilder.group({
         firstName: ['', [Validators.required]],
         lastName: ['', [Validators.required]],
         email: ['', [Validators.required, Validators.email]],
@@ -24,16 +24,16 @@ export class SignUpComponent implements OnInit {
 }
 
   get form () {
-    return this.signInForm.controls;
+    return this.signUpForm.controls;
   }
 
   get isPasswordsEqual () {
     return this.form.password.value === this.form.confirmPswrd.value && !!this.form.confirmPswrd.value;
   }
 
-  signIn() {
+  signUp() {
     this.submitted = true;
-    if (this.signInForm.invalid || !this.isPasswordsEqual) {
+    if (this.signUpForm.invalid || !this.isPasswordsEqual) {
         return;
     }
     // logic .....
