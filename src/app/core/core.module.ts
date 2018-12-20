@@ -4,10 +4,14 @@ import { RouterModule } from '@angular/router';
 
 import { HeaderComponent } from './header/header.component';
 
+import { MainModule } from './main/main.module';
+
+
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    MainModule
   ],
   exports: [
     HeaderComponent
