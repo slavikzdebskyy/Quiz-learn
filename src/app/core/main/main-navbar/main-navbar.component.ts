@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
 import {MatIconRegistry} from '@angular/material';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main-navbar',
@@ -9,9 +10,9 @@ import {MatIconRegistry} from '@angular/material';
 })
 export class MainNavbarComponent implements OnInit {
 
-  sub;
 
-  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
+
+  constructor(private route: Router, iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
     iconRegistry.addSvgIcon(
       'cards',
       sanitizer.bypassSecurityTrustResourceUrl('./../../../../assets/svg/cards.svg'));
@@ -27,6 +28,11 @@ export class MainNavbarComponent implements OnInit {
 }
 
   ngOnInit() {
+    console.log('ROUTE =>', this.route.url.split('/').slice(-1).pop());
+  }
+
+  get pathUrl(): string {
+    return this.route.url.split('/').slice(-1).pop();
   }
 
 }

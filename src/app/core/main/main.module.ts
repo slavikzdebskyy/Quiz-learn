@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { MainComponent } from './main.component';
 import { MainNavbarComponent } from './main-navbar/main-navbar.component';
 import { CardsComponent } from './cards/cards.component';
+import { LearnComponent } from './learn/learn.component';
 
 @NgModule({
   imports: [
@@ -18,8 +19,9 @@ import { CardsComponent } from './cards/cards.component';
   exports: [
     MainComponent,
     CardsComponent,
-    MainNavbarComponent
+    MainNavbarComponent,
+    LearnComponent
   ],
-  declarations: [MainComponent, MainNavbarComponent, CardsComponent]
+  declarations: [MainComponent, MainNavbarComponent, CardsComponent, LearnComponent]
 })
 export class MainModule { }

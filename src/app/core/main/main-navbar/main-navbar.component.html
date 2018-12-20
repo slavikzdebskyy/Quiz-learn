@@ -1,9 +1,35 @@
-<p>
-  main-navbar works!
-</p>
-<mat-icon svgIcon="cards"></mat-icon>
-<mat-icon svgIcon="learn"></mat-icon>
-<mat-icon svgIcon="write"></mat-icon>
-<mat-icon svgIcon="puzzle"></mat-icon>
+<div class="main-navbar-container">
+  <ul>
+    <li class="study-item"
+    [ngClass]="pathUrl === 'cards' ? 'active' : ''"
+    routerLink="/main/cards"
+    >
+      <mat-icon svgIcon="cards"></mat-icon>
+      <h5>Cards</h5>
+    </li>
+    <li class="study-item"
+      [ngClass]="pathUrl === 'learn' ? 'active' : ''"
+      routerLink="/main/learn"
+    >
+      <mat-icon svgIcon="learn"></mat-icon>
+      <h5>Learn</h5>
+    </li>
+    <li class="study-item"
+    [ngClass]="pathUrl === 'write' ? 'active' : ''"
+    routerLink="/main/write"
+    >
+      <mat-icon svgIcon="write"></mat-icon>
+      <h5>Write</h5>
+    </li>
+    <li class="study-item"
+    [ngClass]="pathUrl === 'game' ? 'active' : ''"
+    routerLink="/main/game"
+    >
+      <mat-icon svgIcon="puzzle"></mat-icon>
+      <h5>Game</h5>
+    </li>
+  </ul>
+</div>
+
 
 
