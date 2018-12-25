@@ -8,6 +8,7 @@ import { MainComponent } from './main.component';
 import { MainNavbarComponent } from './main-navbar/main-navbar.component';
 import { CardsComponent } from './cards/cards.component';
 import { LearnComponent } from './learn/learn.component';
+import { WriteComponent } from './write/write.component';
 
 @NgModule({
   imports: [
@@ -22,6 +23,6 @@ import { LearnComponent } from './learn/learn.component';
     MainNavbarComponent,
     LearnComponent
   ],
-  declarations: [MainComponent, MainNavbarComponent, CardsComponent, LearnComponent]
+  declarations: [MainComponent, MainNavbarComponent, CardsComponent, LearnComponent, WriteComponent]
 })
 export class MainModule { }

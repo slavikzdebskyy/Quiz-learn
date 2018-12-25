@@ -81,5 +81,9 @@ export class LearnComponent implements OnInit {
     this.wrongAnswer = '';
   }
 
+  getTranslate (word, isUa) {
+      return isUa ? dictionary.find(el => el.ua === word).eng : dictionary.find(el => el.eng === word).ua;
+  }
+
 
 }

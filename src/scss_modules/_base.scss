@@ -1,0 +1,13 @@
+@import './mixins';
+
+.row {
+  @include flex(row, center, space-between);
+}
+
+.column {
+  @include flex(column, center, space-between);
+}
+
+.container {
+  width: 100%;
+}

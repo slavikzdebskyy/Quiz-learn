@@ -20,38 +20,51 @@
           >
             <div class="index-container">
               <span class="index">
-                {{indx}}
+                {{indx + 1}}
               </span>
             </div>
             {{answ}}
           </span>
         </div>
     </div>
-    <div class="result" *ngIf="!isQuestion" (click)="nextQuestion()">
-      <h2 class="right-answer" *ngIf="isRight">Вірно !</h2>
-      <h2 class="wrong-answer" *ngIf="!isRight">Невірно ! Потрібно вивчити цей термін !</h2>
+    <div
+      class="result-container"
+      *ngIf="!isQuestion"
+      (click)="nextQuestion()"
+    >
+      <h2 class="right-answer" *ngIf="isRight">Правильно !</h2>
+      <h2 class="wrong-answer" *ngIf="!isRight">Неправильно ! Потрібно вивчити цей термін !</h2>
       <hr>
-      <span class="title">
-        термін:
-      </span>
-      <span class="word">
-        {{questions[questionIndex].word}}
-      </span>
-      <span class="title" *ngIf="!isRight">
-        твоя відповідь:
-      </span>
-      <span class="word-wrong" *ngIf="!isRight">
-        {{wrongAnswer}}
-      </span>
-      <span class="title" *ngIf="isRight">
-        відповідає:
-      </span>
-      <span class="title" *ngIf="!isRight">
-        правильно:
-      </span>
-      <span class="word">
-        {{questions[questionIndex].answer}}
-      </span>
+      <div class="row container">
+        <div class="column result">
+          <span class="title">
+            термін:
+          </span>
+          <span class="word">
+            {{questions[questionIndex].word}}
+          </span>
+          <span class="title">
+            відповідає:
+          </span>
+          <span class="word">
+            {{questions[questionIndex].answer}}
+          </span>
+        </div>
+        <div class="column result">
+          <span class="title" *ngIf="!isRight">
+            твоя відповідь:
+          </span>
+          <span class="word" *ngIf="!isRight">
+            {{wrongAnswer}}
+          </span>
+          <span class="title" *ngIf="!isRight">
+            відповідає:
+          </span>
+          <span class="word" *ngIf="!isRight">
+            {{getTranslate(wrongAnswer, true)}}
+          </span>
+        </div>
+      </div>
     </div>
   </div>
 </div>
