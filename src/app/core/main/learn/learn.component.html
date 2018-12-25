@@ -1,3 +1,57 @@
 <div class="learn-container">
-
+  <div class="progress">
+    <span>{{questionIndex + 1}} / {{questions.length}}</span>
+    <div class="load">
+      <div class="loading" [style.width.%]="loadingWidth"> </div>
+    </div>
+    <span>{{progressWidth}}%</span>
+    <div class="load">
+      <div class="loading red" [style.width.%]="progressWidth"> </div>
+    </div>
+  </div>
+  <div class="question-contaianer">
+    <div class="question"  *ngIf="isQuestion">
+        <h3>{{questions[questionIndex].word}}</h3>
+        <div class="answers-container">
+          <span
+            class="answer"
+            *ngFor="let answ of questions[questionIndex].answers; let indx = index"
+            (click)="checkAnswer(answ)"
+          >
+            <div class="index-container">
+              <span class="index">
+                {{indx}}
+              </span>
+            </div>
+            {{answ}}
+          </span>
+        </div>
+    </div>
+    <div class="result" *ngIf="!isQuestion" (click)="nextQuestion()">
+      <h2 class="right-answer" *ngIf="isRight">Вірно !</h2>
+      <h2 class="wrong-answer" *ngIf="!isRight">Невірно ! Потрібно вивчити цей термін !</h2>
+      <hr>
+      <span class="title">
+        термін:
+      </span>
+      <span class="word">
+        {{questions[questionIndex].word}}
+      </span>
+      <span class="title" *ngIf="!isRight">
+        твоя відповідь:
+      </span>
+      <span class="word-wrong" *ngIf="!isRight">
+        {{wrongAnswer}}
+      </span>
+      <span class="title" *ngIf="isRight">
+        відповідає:
+      </span>
+      <span class="title" *ngIf="!isRight">
+        правильно:
+      </span>
+      <span class="word">
+        {{questions[questionIndex].answer}}
+      </span>
+    </div>
+  </div>
 </div>

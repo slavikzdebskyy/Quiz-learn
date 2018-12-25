@@ -28,7 +28,6 @@ export class MainNavbarComponent implements OnInit {
 }
 
   ngOnInit() {
-    console.log('ROUTE =>', this.route.url.split('/').slice(-1).pop());
   }
 
   get pathUrl(): string {

@@ -1,3 +1,23 @@
 <div class="cards-container">
-
+  <div class="progress">
+    <span>{{slideIndex + 1}} / {{words.length}}</span>
+    <div class="load">
+      <div class="loading" [style.width.%]="loadingWidth"> </div>
+    </div>
+  </div>
+  <div class="flip-container">
+    <div class="card" [ngClass]="openOrCloseCardClassName" (click)="flipCard()"  >
+        <div class="frontpage">
+            <h3 class="word">{{words[slideIndex].eng}}</h3>
+        </div>
+        <div class="rearpage">
+            <h3 class="word">{{words[slideIndex].ua}}</h3>
+        </div>
+    </div>
+    <div class="btn-container">
+      <button class="slide-btn" (click)="prevSlide()">Prev</button>
+      <button class="slide-btn" (click)="nextSlide()">Next</button>
+    </div>
+  </div>
 </div>
+
