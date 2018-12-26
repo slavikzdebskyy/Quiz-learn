@@ -1,19 +1,6 @@
 @import 'src/scss_modules/mixins';
-
-.cards-container,
-.learn-container {
-  background-color: #f2f2f2;
-  padding-top: 100px;
-  min-height: 800px;
-  display: flex;
-}
-
-.flip-container,
-.question-contaianer {
-  width: 600px;
-  margin: 20px;
-  perspective:1000;
-}
+@import 'src/scss_modules/base';
+@import 'src/app/core/main/main.component.scss';
 
 .card {
   width: 100%;
@@ -52,41 +39,9 @@ button.slide-btn {
   cursor: pointer;
 }
 
-h3.word {
-  font-size: 30px;
-  font-weight: 400;
-  letter-spacing: 2px;
-}
-
 .btn-container {
   width: 100%;
   padding: 20px 0 20px;
   @include flex(row, center, space-around);
 }
 
-.progress {
-  width: 200px;
-  min-height: 200px;
-  margin: 0 20px 0;
-  text-align: center;
-  padding-top: 40px;
-  background: none;
-  @include flex(column, center, flex-start);
-
-  span {
-    width: 100%;
-    font-size: 16px;
-    font-weight: 500;
-  }
-  .load {
-    width: 100%;
-    height: 20px;
-    background-color: lighten($color: #4257b2, $amount: 40%);
-    margin-top: 10px;
-    .loading {
-      height: 20px;
-      background-color: #4257b2;
-      transition: 0.4s;
-    }
-  }
-}

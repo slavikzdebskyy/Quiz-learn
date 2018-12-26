@@ -1,9 +1,9 @@
-import { Words } from './../app/shared/models/words.model';
+import { Word } from '../app/shared/models/word.model';
 
-export const dictionary: Words[] = [
+export const dictionary: Word[] = [
   {
     'eng' : 'check-in counter',
-    'ua' : 'стійка рееєстрації',
+    'ua' : 'стійка реєстрації',
     'title' : 'airport'
   },
   {

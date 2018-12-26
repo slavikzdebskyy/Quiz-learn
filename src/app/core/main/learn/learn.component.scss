@@ -1,4 +1,4 @@
-@import 'src/app/core/main/cards/cards.component.scss';
+@import 'src/app/core/main/main.component.scss';
 @import 'src/scss_modules/mixins';
 @import 'src/scss_modules/base';
 
@@ -36,69 +36,6 @@
   width: 25px;
   height: 25px;
   font-size: 14px;
-}
-
-span {
-  &.answer {
-    @include flex(column, center, center);
-    height: 80px;
-    padding: 10px 20px;
-    border: 1px solid #3ccfcf;
-    cursor: pointer;
-    font-weight: 400;
-    position: relative;
-    transition: 0.3s;
-    margin: 0 15px;
-    &:hover {
-      border-color: #ffcd1f;
-    }
-  }
-  &.index {
-    @include flex(row, center, center);
-    border-radius: 50%;
-    border: 1px solid #ccc;
-    color: #ccc;
-    width: 20px;
-    height: 20px;
-  }
-  &.title {
-    width: 80%;
-    text-transform: uppercase;
-    font-weight: 400;
-    letter-spacing: 2px;
-    color: #888;
-    margin: 15px 0 15px;
-  }
-  &.word {
-    width: 80%;
-    font-weight: 600;
-    letter-spacing: 1px;
-    font-size: 18px;
-    margin: 15px 0 15px;
-  }
-}
-h2 {
-  font-weight: 400;
-  width: 100%;
-  text-align: center;
-  margin-top: 50px;
-  &.right-answer {
-    color: #23b26d;
-  }
-  &.wrong-answer {
-    color: #ff725b;
-  }
-}
-
-hr {
-  width: 95%;
-  margin: 0;
-}
-.red {
-  background-color: #ff725b;
-}
-.load {
-  margin-bottom: 30px;
 }
 
 @keyframes fade {

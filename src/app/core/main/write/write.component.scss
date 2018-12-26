@@ -1,0 +1,75 @@
+@import 'src/app/core/main/main.component.scss';
+@import 'src/scss_modules/mixins';
+@import 'src/scss_modules/base';
+
+.write-item {
+  @include flex(column, center, space-around);
+  width: 800px;
+  height: 500px;
+  position: relative;
+  background-color: #ffffff;
+}
+.answer-form {
+  width: 100%;
+  height: 60px;
+  justify-content: space-around;
+}
+input {
+  width: 300px;
+  height: 50px;
+  outline: none;
+  border: none;
+  border-bottom: 2px solid #3ccfcf;
+  transition: 0.6s;
+  &:focus {
+    border-color: #ffcd1f
+  }
+}
+
+.answer-btn {
+  @include flex(row, center, space-around);
+  width: 220px;
+  height: 40px;
+  letter-spacing: 1px;
+  font-size: 18px;
+  color: #fff;
+  background-color: #3ccfcf;
+  transition: 0.3s;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  &:hover {
+    background-color: lighten($color: #3ccfcf, $amount: 15%);
+  }
+}
+
+span.placeholder {
+  padding: 15px;
+  pointer-events: none;
+  position:absolute;
+  left: 0;
+  top: 0;
+  transition: 0.2s;
+  transition-timing-function: ease;
+  transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+  opacity: 0.5;
+}
+
+label {
+  margin: 5px 0;
+  position:relative;
+  display:inline-block;
+}
+
+input:focus + span, input:not(:placeholder-shown) + span {
+  opacity:1;
+  transform: scale(0.85) translateY(-80%) translateX(-30px);
+}
+
+.result {
+  width: 100%;
+}
+
+

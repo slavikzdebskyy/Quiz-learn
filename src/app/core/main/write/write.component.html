@@ -1,3 +1,58 @@
-<p>
-  write works!
-</p>
+<div class="write-container">
+  <div class="progress">
+    <span class="info">
+      залишилось
+      <span class="info-item">
+        {{questions.length - questionIndex}}
+      </span>
+    </span>
+    <div class="load">
+      <div class="loading" [style.width.%]="lefttWidth"> </div>
+    </div>
+    <span class="info">
+      правильно
+      <span class="info-item">
+        {{rightAnswerCount}}
+      </span>
+    </span>
+    <div class="load light-s-green">
+      <div class="loading green" [style.width.%]="rightWidth"> </div>
+    </div>
+    <span class="info">
+      неправильно
+      <span class="info-item">
+        {{wrongAnswerCount}}
+      </span>
+    </span>
+    <div class="load light-s-red">
+      <div class="loading red" [style.width.%]="wrongWidth"> </div>
+    </div>
+  </div>
+  <div class="write-item" (click)="nextQuestion()">
+    <h3>{{questions[questionIndex][lang]}}</h3>
+    <form
+      (ngSubmit)="checkAnswer(answer)"
+      class="answer-form row"
+      *ngIf="isQuestion"
+    >
+      <label>
+          <input placeholder=" " type="text" #answer >
+          <span class="placeholder">Введи відвовідь...</span>
+      </label>
+      <button class="answer-btn"  type="submit">
+        Відповідь
+      </button>
+    </form>
+    <div class="result column" *ngIf="!isQuestion">
+      <hr>
+      <h2 class="right-answer" *ngIf="isRight">Правильно !</h2>
+      <h2 class="wrong-answer" *ngIf="!isRight">Неправильно !</h2>
+      <span class="title" *ngIf="!isRight">
+        Правильно:
+      </span>
+      <span class="word">
+          {{questions[questionIndex][langOpposite]}}
+      </span>
+    </div>
+  </div>
+</div>

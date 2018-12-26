@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Words } from 'src/app/shared/models/words.model';
-import { dictionary } from 'src/data/dictionary';
+import { WordForQuiz } from 'src/app/shared/models/word.model';
+import { DictionaryService } from './../../../shared/services/dictionary.service';
 
 @Component({
   selector: 'app-learn',
@@ -9,8 +9,8 @@ import { dictionary } from 'src/data/dictionary';
 })
 export class LearnComponent implements OnInit {
 
+  questions: WordForQuiz[];
   questionIndex = 0;
-  questions: any[];
   loadingWidth = 0;
   progressWidth = 100;
   isQuestion = true;
@@ -18,49 +18,11 @@ export class LearnComponent implements OnInit {
   wrongAnswer = '';
   currWrongAnswers = 0;
 
-  constructor() { }
+  constructor(private dictionaryService: DictionaryService) { }
 
   ngOnInit() {
-    this.questions = this.getTenRandomIndexes(dictionary);
+    this.questions = this.dictionaryService.getRandomWordsForQuizByTitle();
     this.loadingWidth = ((this.questionIndex + 1) / this.questions.length) * 100;
-  }
-
-  getTenRandomIndexes (wordsArray: Words[]) {
-    const indexes = [];
-    const result = [];
-    for (let i = 0; i < 10; i++) {
-      let isUnique = true;
-      while (isUnique) {
-        const randomIndex = Math.floor(Math.random() * (wordsArray.length - 1));
-        if (!indexes.includes(randomIndex)) {
-          indexes.push(randomIndex);
-          const obj = {
-            'word' : wordsArray[randomIndex].eng,
-            'answers' : this.getFourAnswersIndexes(randomIndex, wordsArray),
-            'answer' : wordsArray[randomIndex].ua
-          };
-          result.push(obj);
-          isUnique = false;
-        }
-      }
-    }
-    return result;
-  }
-
-  getFourAnswersIndexes (currIndex: number, wordsArray: Words[]) {
-    const result = [];
-    for (let i = 0; i < 4; i++) {
-      let isUnique = true;
-      while (isUnique) {
-        const randomIndex = Math.floor(Math.random() * (wordsArray.length - 1));
-        if (!result.includes(randomIndex) && randomIndex !== currIndex) {
-          result.push(wordsArray[randomIndex].ua);
-          isUnique = false;
-        }
-      }
-    }
-    result[Math.floor(Math.random() * 4)] = wordsArray[currIndex].ua;
-    return result;
   }
 
   checkAnswer (answer) {
@@ -82,7 +44,7 @@ export class LearnComponent implements OnInit {
   }
 
   getTranslate (word, isUa) {
-      return isUa ? dictionary.find(el => el.ua === word).eng : dictionary.find(el => el.eng === word).ua;
+      return this.dictionaryService.getTranslate(word, isUa);
   }
 
 

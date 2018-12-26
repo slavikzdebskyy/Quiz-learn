@@ -1,4 +1,4 @@
-@import '../../../../scss_modules/mixins';
+@import 'src/scss_modules/mixins';
 
 .sing-up-container {
   @include flex(column, center, center);

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Words } from 'src/app/shared/models/words.model';
-import { dictionary } from 'src/data/dictionary';
+import { Word } from 'src/app/shared/models/word.model';
+import { DictionaryService } from 'src/app/shared/services/dictionary.service';
 
 @Component({
   selector: 'app-cards',
@@ -10,15 +10,17 @@ import { dictionary } from 'src/data/dictionary';
 export class CardsComponent implements OnInit {
 
   openOrCloseCardClassName = '';
+  lang: string = Math.floor(Math.random() * 2) ? 'ua' : 'eng';
+  langOpposite: string = this.lang === 'ua' ? 'eng' : 'ua';
   slideIndex = 0;
-  words: Words[];
+  words: Word[];
   loadingWidth = 0;
 
 
-  constructor() { }
+  constructor(private dictionaryService: DictionaryService) { }
 
   ngOnInit() {
-    this.words = dictionary;
+    this.words = this.dictionaryService.getWordsByTitle('airport');
     this.loadingWidth = ((this.slideIndex + 1) / this.words.length) * 100;
   }
 

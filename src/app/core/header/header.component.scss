@@ -1,4 +1,4 @@
-@import './../../../scss_modules/mixins';
+@import 'src/scss_modules/mixins';
 
 header {
   @include flex(row, center, space-between);
