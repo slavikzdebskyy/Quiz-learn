@@ -12,6 +12,7 @@ import { MainNavbarComponent } from './main-navbar/main-navbar.component';
 import { CardsComponent } from './cards/cards.component';
 import { LearnComponent } from './learn/learn.component';
 import { WriteComponent } from './write/write.component';
+import { GameComponent } from './game/game.component';
 
 
 @NgModule({
@@ -29,6 +30,6 @@ import { WriteComponent } from './write/write.component';
     LearnComponent
   ],
   providers: [DictionaryService],
-  declarations: [MainComponent, MainNavbarComponent, CardsComponent, LearnComponent, WriteComponent]
+  declarations: [MainComponent, MainNavbarComponent, CardsComponent, LearnComponent, WriteComponent, GameComponent]
 })
 export class MainModule { }
