@@ -1,15 +1,73 @@
+@import 'src/app/core/main/main.component.scss';
 @import 'src/scss_modules/mixins';
 
+%flex-center {
+  @include flex(row, center, center);
+}
+
 .game-container {
+  @include flex(row, center, flex-start);
   width: 100%;
-  min-height: 600px;
   margin-top: 100px;
   background-color: #f2f2f2;
+}
+
+.progress {
+  background-color: #fff;
+  min-height: 600px;
+  box-shadow: 6px 10px 15px 6px #cccc;
+}
+
+.modal-msg-container {
+  @extend %flex-center;
+  background-color: rgba($color: #000000, $alpha: 0.6);
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+}
+
+.end-start-msg {
+  @include flex(column, center, space-around);
+  width: 350px;
+  height: 200px;
+  background-color: #fff;
+  box-shadow: 1px 0px 20px 3px #888;
+  .message {
+    margin: 0;
+  }
+}
+
+button.start-end-btn {
+  @include flex(row, center, space-around);
+  width: 90%;
+  height: 40px;
+  letter-spacing: 1px;
+  font-size: 18px;
+  color: #fff;
+  transition: 0.3s;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  background-color: #3ccfcf;
+  &:hover {
+    background-color: lighten($color: #3ccfcf, $amount: 15%);
+  }
+}
+
+
+.game-area {
+  width: 100%;
+  min-height: 600px;
   position: relative;
   user-select: none;
 }
 .drager {
-  @include flex(row, center, center);
+  @extend %flex-center;
   width: 150px;
   height: 50px;
   touch-action: none;
@@ -20,14 +78,26 @@
   border: 2px solid darken($color: #f2f2f2, $amount: 40%);
   transform: 0.4s;
   border-radius: 4px;
+  animation: startGame 1s;
   span.drager-item {
+    @extend %flex-center;
     width: 150px;
     height: 50px;
     touch-action: none;
-    @include flex(row, center, center);
     flex-wrap: wrap;
     position: relative;
     font-size: 18px;
     font-weight: 500;
   }
+}
+
+@keyframes startGame {
+  from {
+    transform: translate(0px, 0px);
+  }
+
+  // to {
+  //   margin-left: 0%;
+  //   width: 100%;
+  // }
 }

@@ -4,7 +4,7 @@ import { AuthService, FacebookLoginProvider, GoogleLoginProvider } from 'angular
 @Component({
   selector: 'app-social-auth',
   templateUrl: './social-auth.component.html',
-  styleUrls: ['./social-auth.component.scss']
+  styleUrls: ['../authorization.scss']
 })
 export class SocialAuthComponent implements OnInit {
 

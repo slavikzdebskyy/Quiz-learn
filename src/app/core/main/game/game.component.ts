@@ -9,11 +9,15 @@ import { ElementSize, WordForGame, Offset } from 'src/app/shared/models/word.mod
 })
 export class GameComponent implements OnInit {
 
-  @ViewChild('game') gameContainer: ElementRef;
+  @ViewChild('gameArea') gameArea: ElementRef;
 
   currElemHiddenValue: string;
+  isEndOfGame = false;
+  isStartOfGame = true;
   containerSize: ElementSize;
   wordsForGame: WordForGame[];
+  time = 0;
+  intervalId: any;
 
   constructor(private dictionaryService: DictionaryService) { }
 
@@ -21,10 +25,25 @@ export class GameComponent implements OnInit {
 
   ngOnInit() {
     this.containerSize = {
-      height : this.gameContainer.nativeElement.offsetHeight,
-      width : this.gameContainer.nativeElement.offsetWidth
+      height : this.gameArea.nativeElement.offsetHeight,
+      width : this.gameArea.nativeElement.offsetWidth
     };
-    this.wordsForGame = this.dictionaryService.getRandomWordsForGame(this.containerSize, 'all', 6);
+  }
+
+  startTimer() {
+    this.intervalId = setInterval(() => {
+      this.time++;
+    }, 1000);
+  }
+
+  stopTimer() {
+     clearInterval(this.intervalId);
+  }
+
+  startGame() {
+    this.isStartOfGame = false;
+    this.wordsForGame = this.dictionaryService.getRandomWordsForGame(this.containerSize, 'all', 2);
+    this.startTimer();
   }
 
   dragStart(offset: Offset, word: string) {
@@ -42,7 +61,18 @@ export class GameComponent implements OnInit {
       this.wordsForGame.splice(indexOne, 1);
       const indexTwo = this.wordsForGame.findIndex(el => el.hiddenWord === word);
       this.wordsForGame.splice(indexTwo, 1);
+      if (!this.wordsForGame.length) {
+        this.isEndOfGame = true;
+        this.stopTimer();
+      }
     }
+  }
+
+  restartGame () {
+    this.isEndOfGame = false;
+    this.isStartOfGame = true;
+    this.time = 0;
+    this.stopTimer();
   }
 
 }
