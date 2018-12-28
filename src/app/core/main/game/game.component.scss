@@ -1,11 +1,33 @@
+@import 'src/scss_modules/mixins';
+
 .game-container {
-  width: 800px;
-  height: 800px;
-  padding-top: 100px;
+  width: 100%;
+  min-height: 600px;
+  margin-top: 100px;
+  background-color: #f2f2f2;
+  position: relative;
+  user-select: none;
 }
 .drager {
-  width: 50px;
+  @include flex(row, center, center);
+  width: 150px;
   height: 50px;
+  touch-action: none;
   cursor: pointer;
-  background-color: lightseagreen;
+  position: absolute;
+  z-index: 1;
+  background-color: #fff;
+  border: 2px solid darken($color: #f2f2f2, $amount: 40%);
+  transform: 0.4s;
+  border-radius: 4px;
+  span.drager-item {
+    width: 150px;
+    height: 50px;
+    touch-action: none;
+    @include flex(row, center, center);
+    flex-wrap: wrap;
+    position: relative;
+    font-size: 18px;
+    font-weight: 500;
+  }
 }

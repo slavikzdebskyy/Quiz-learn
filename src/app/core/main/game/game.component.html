@@ -1,5 +1,17 @@
-<div class="game-container">
-  <div class="drager">
-
+<div class="game-container" #game>
+  <div *ngFor="let word of wordsForGame"
+    class="drager"
+    ngDraggable
+    [style.transform]="'translate(' + word.offset.x + 'px, ' + word.offset.y + 'px)'"
+    [position]="word.offset"
+    [zIndex]="word.offset.z"
+    (started)="dragStart(word.offset, word.hiddenWord)"
+    (stopped)="gragStop(word.offset)"
+    (mouseup)="checkWords(word.displayWord)"
+  >
+  <span class="drager-item">{{word.displayWord}}</span>
   </div>
 </div>
+
+
+

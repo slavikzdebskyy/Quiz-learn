@@ -10,3 +10,19 @@ export interface WordForQuiz {
   answer: string;
 }
 
+export interface WordForGame {
+  displayWord: string;
+  hiddenWord: string;
+  offset: Offset;
+}
+
+export interface Offset {
+  x: number;
+  y: number;
+  z: number;
+}
+
+export interface ElementSize {
+  width: number;
+  height: number;
+}

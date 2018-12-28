@@ -4,6 +4,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { AngularDraggableModule } from 'angular2-draggable';
 
 import { DictionaryService } from 'src/app/shared/services/dictionary.service';
 
@@ -21,7 +22,8 @@ import { GameComponent } from './game/game.component';
     BrowserModule,
     MatIconModule,
     RouterModule,
-    FormsModule
+    FormsModule,
+    AngularDraggableModule
   ],
   exports: [
     MainComponent,
@@ -30,6 +32,13 @@ import { GameComponent } from './game/game.component';
     LearnComponent
   ],
   providers: [DictionaryService],
-  declarations: [MainComponent, MainNavbarComponent, CardsComponent, LearnComponent, WriteComponent, GameComponent]
+  declarations: [
+    MainComponent,
+    MainNavbarComponent,
+    CardsComponent,
+    LearnComponent,
+    WriteComponent,
+    GameComponent
+  ]
 })
 export class MainModule { }
