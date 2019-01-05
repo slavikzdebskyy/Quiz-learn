@@ -1,44 +1,67 @@
 <div class="sing-up-container">
-  <form [formGroup]="signUpForm" (ngSubmit)="signUp()">
+  <form
+    [formGroup]="signUpForm"
+    (ngSubmit)="signUp()"
+    *ngIf="!isSignUpSuccessful"
+  >
     <h2>Sign up</h2>
     <label>
-      <input placeholder=" " type="text" formControlName="firstName" [ngClass]="{ 'not-valid': submitted && form.firstName.errors }">
+      <input placeholder=" " type="text" formControlName="firstName" [ngClass]="{ 'not-valid': isShowFormsErrors && form.firstName.errors }">
       <span class="placeholder">Type your first name...</span>
-      <span class="error-validation"  *ngIf="submitted && form['firstName'].errors">Enter correct first name</span>
+      <span class="error-validation"  *ngIf="isShowFormsErrors && form['firstName'].errors">Enter correct first name</span>
     </label>
     <label>
-      <input placeholder=" " type="text" formControlName="lastName" [ngClass]="{ 'not-valid': submitted && form.lastName.errors }">
+      <input placeholder=" " type="text" formControlName="lastName" [ngClass]="{ 'not-valid': isShowFormsErrors && form.lastName.errors }">
       <span class="placeholder">Type your last name...</span>
-      <span class="error-validation"  *ngIf="submitted && form['lastName'].errors">Enter correct last name</span>
+      <span class="error-validation"  *ngIf="isShowFormsErrors && form['lastName'].errors">Enter correct last name</span>
     </label>
     <label>
-      <input placeholder=" " type="email" formControlName="email" [ngClass]="{ 'not-valid': submitted && form.email.errors }">
+      <input placeholder=" " type="email" formControlName="email" [ngClass]="{ 'not-valid': isShowFormsErrors && form.email.errors }">
       <span class="placeholder">Type your email...</span>
-      <span class="error-validation"  *ngIf="submitted && form['email'].errors">Enter correct email</span>
+      <span class="error-validation"  *ngIf="isShowFormsErrors && form['email'].errors">Enter correct email</span>
     </label>
     <label>
-        <input placeholder=" " type="password" formControlName="password" [ngClass]="{ 'not-valid': submitted && form.password.errors }">
+      <input placeholder=" " type="text" formControlName="country" [ngClass]="{ 'not-valid': submitted && form.country.errors }">
+      <span class="placeholder">Type your country...</span>
+      <span class="error-validation" *ngIf="isShowFormsErrors && form['country'].errors">Enter country</span>
+    </label>
+    <label>
+      <input placeholder=" " type="text" formControlName="city" [ngClass]="{ 'not-valid': isShowFormsErrors && form.city.errors }">
+      <span class="placeholder">Type your city...</span>
+      <span class="error-validation" *ngIf="isShowFormsErrors && form['city'].errors">Enter city</span>
+    </label>
+    <label>
+      <input placeholder=" " type="text" formControlName="enlishLevel" [ngClass]="{ 'not-valid': isShowFormsErrors && form.enlishLevel.errors }">
+      <span class="placeholder">Type your enlish level...</span>
+      <span class="error-validation" *ngIf="isShowFormsErrors && form['enlishLevel'].errors">Enter enlish level</span>
+    </label>
+    <label>
+        <input placeholder=" " type="password" formControlName="password" [ngClass]="{ 'not-valid': isShowFormsErrors && form.password.errors }">
         <span class="placeholder">Type your password...</span>
-        <span class="error-validation" *ngIf="submitted && form['password'].errors">Enter password</span>
-        <span class="error-validation" *ngIf="submitted && !isPasswordsEqual">Passwords in not equal</span>
+        <span class="error-validation" *ngIf="isShowFormsErrors && form['password'].errors">Enter password</span>
+        <span class="error-validation" *ngIf="isShowFormsErrors && !isPasswordsEqual">Passwords in not equal</span>
     </label>
     <label>
-        <input  placeholder=" " type="password" formControlName="confirmPswrd" [ngClass]="{ 'not-valid': submitted && form.confirmPswrd.errors }">
+        <input  placeholder=" " type="password" formControlName="confirmPswrd" [ngClass]="{ 'not-valid': isShowFormsErrors && form.confirmPswrd.errors }">
         <span class="placeholder">Confirm your password...</span>
-        <span class="error-validation" *ngIf="submitted && form['confirmPswrd'].errors">Enter password</span>
-        <span class="error-validation" *ngIf="submitted && !isPasswordsEqual">Passwords in not equal</span>
+        <span class="error-validation" *ngIf="isShowFormsErrors && form['confirmPswrd'].errors">Enter password</span>
+        <span class="error-validation" *ngIf="isShowFormsErrors && !isPasswordsEqual">Passwords in not equal</span>
     </label>
     <button type="submit">
-      <span *ngIf="submitted">
+      <span *ngIf="isLoader">
         <i class="fa fa-spinner fa-spin"></i>
         Loading ...
       </span>
-      <span *ngIf="!submitted">
+      <span *ngIf="!isLoader">
         Sign-up
       </span>
     </button>
-    <app-social-auth></app-social-auth>
   </form>
+  <div class="congrat" *ngIf="isSignUpSuccessful">
+    <h2>Congratulation !</h2>
+    <span>You have signed up successfuly</span>
+    <button class="to-login-btn" routerLink="/login">To login</button>
+  </div>
 </div>
 
 

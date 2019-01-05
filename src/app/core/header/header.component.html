@@ -1,10 +1,16 @@
 <header>
   <h2>QUIZ learn</h2>
   <!-- <img src="../../../assets/logo.jpg" alt="quiz-logo" class="logo-quiz"> -->
-  <button routerLink="/main">main</button>
-<div>
+<div *ngIf="!isLogined">
   <span class="login" routerLink="/login">Login</span>
-  <span class="sign-in" routerLink="/sign-in">Sign In</span>
+  <span class="sign-in" routerLink="/sign-up">Sign up</span>
+</div>
+<div class="user-menu-container"  *ngIf="isLogined">
+  <button class="user-menu-btn">{{userFullName}}</button>
+  <div id="myDropdown" class="dropdown-content">
+    <span class="drp-dwn-menu-item" (click)="logOut()">Log out</span>
+    <span class="drp-dwn-menu-item">My acount</span>
+  </div>
 </div>
 
 </header>

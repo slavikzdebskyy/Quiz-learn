@@ -10,8 +10,9 @@ import { GameComponent } from './core/main/game/game.component';
 
 
 export const routers: Routes = [
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'sign-in', component: SignUpComponent } ,
+  { path: 'sign-up', component: SignUpComponent } ,
   { path: 'main', component: MainComponent,
     children: [
       { path: 'cards', component: CardsComponent},

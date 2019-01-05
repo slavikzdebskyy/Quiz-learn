@@ -3,7 +3,15 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  local: {
+    saveUser: 'http://localhost:3000/users/signup',
+    loginUser: 'http://localhost:3000/users/login',
+    acountUser: 'http://localhost:3000/users/getuser',
+    logOutUser: 'http://localhost:3000/users/logout'
+  },
+  defaultToken: 'TdhfDHsue647sf2skJDhuH739kdf',
+  localStorageName: 'usersToken'
 };
 
 /*

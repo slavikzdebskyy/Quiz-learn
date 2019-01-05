@@ -1,27 +1,41 @@
 <div class="sing-up-container">
-  <form [formGroup]="loginForm" (ngSubmit)="login()">
+  <form
+    [formGroup]="loginForm"
+    (ngSubmit)="login()"
+    *ngIf="isForm"
+  >
     <h2>Login</h2>
     <label>
-      <input placeholder=" " type="email" formControlName="email" [ngClass]="{ 'not-valid': logined && form.email.errors }">
+      <input placeholder=" " type="email" formControlName="email" [ngClass]="{ 'not-valid': isShowErrors && form.email.errors }">
       <span class="placeholder">Type your email...</span>
-      <span class="error-validation"  *ngIf="logined && form['email'].errors">Enter correct email</span>
+      <span class="error-validation"  *ngIf="isShowErrors && form['email'].errors">Enter correct email</span>
     </label>
     <label>
-        <input placeholder=" " type="password" formControlName="password" [ngClass]="{ 'not-valid': logined && form.password.errors }">
+        <input placeholder=" " type="password" formControlName="password" [ngClass]="{ 'not-valid': isShowErrors && form.password.errors }">
         <span class="placeholder">Type your password...</span>
-        <span class="error-validation" *ngIf="logined && form['password'].errors">Enter password</span>
+        <span class="error-validation" *ngIf="isShowErrors && form['password'].errors">Enter password</span>
     </label>
     <button type="submit">
-      <span *ngIf="logined">
+      <span *ngIf="isLoader">
         <i class="fa fa-spinner fa-spin"></i>
         Loading ...
       </span>
-      <span *ngIf="!logined">
+      <span *ngIf="!isLoader">
         Login
       </span>
     </button>
     <app-social-auth></app-social-auth>
   </form>
+  <div class="congrat" *ngIf="isLoginSuccessful">
+    <h2>Welcome, <br> <b>{{userFullName}}</b></h2>
+    <span>You have logined successfuly !</span>
+    <button class="to-login-btn" routerLink="/main">Let's learn English!</button>
+  </div>
+  <div class="wrong-credentials" *ngIf="isWrongCredentials">
+      <h2 class="error-title">Something went wrong !</h2>
+      <span>You have entered wrong email or password</span>
+      <button class="to-login-btn error-btn" (click)="backToLogin()">Back to login</button>
+    </div>
 </div>
 
 

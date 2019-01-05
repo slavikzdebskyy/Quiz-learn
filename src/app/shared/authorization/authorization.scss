@@ -21,15 +21,33 @@ app-social-auth {
 
 h2 {
   color: #3ccfcf;
+  text-align: center;
+  &.error-title {
+    color: #cc0000;
+  }
+}
+b {
+  color: #ffcd1f;
 }
 
-form {
+form,
+.congrat,
+.wrong-credentials {
   @include flex(column, center, space-around);
   width: 330px;
   padding: 20px;
   background-color: #fff;
   border-radius: 10px;
   margin: 20px;
+}
+
+.congrat,
+.wrong-credentials {
+  min-height: 250px;
+}
+
+.wrong-credentials {
+  color: #cc0000;
 }
 
 label {
@@ -39,6 +57,7 @@ label {
 }
 
 span {
+  text-align: center;
   &.placeholder {
   padding: 15px;
   pointer-events: none;
@@ -89,24 +108,32 @@ button {
   cursor: pointer;
   outline: none;
   border: none;
-  &[type='submit'] {
+  &[type='submit'],
+  &.to-login-btn {
     background-color: #3ccfcf;
     &:hover {
       background-color: lighten($color: #3ccfcf, $amount: 15%);
     }
   }
   &.fa-facebook {
-    background: #3B5998;
+    background-color: #3B5998;
     &:hover {
       background-color: lighten($color: #3B5998, $amount: 15%);
     }
   }
   &.fa-google {
-    background: #dd4b39;
+    background-color: #dd4b39;
     &:hover {
       background-color: lighten($color: #dd4b39, $amount: 15%);
     }
   }
+  &.error-btn {
+    background-color: #dd4b39;
+    &:hover {
+      background-color: lighten($color: #dd4b39, $amount: 15%);
+    }
+  }
+
 }
 
 input:focus + span, input:not(:placeholder-shown) + span {

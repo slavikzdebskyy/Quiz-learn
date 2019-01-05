@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UserService } from '../../services/user.service';
+import { StorageService } from '../../services/storage.service';
 
 @Component({
   selector: 'app-login',
@@ -10,17 +12,32 @@ export class LoginComponent implements OnInit {
 
 
   loginForm: FormGroup;
-  logined = false;
+  isShowErrors = false;
+  isLoader = false;
+  isForm = true;
+  isLoginSuccessful = false;
+  isWrongCredentials = false;
+  userFullName: string;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private userService: UserService,
+    private storageService: StorageService) { }
 
   ngOnInit () {
+    if (this.storageService.getItem()){
+      this.userService.getUserByToken().subscribe(res => {
+        if (res['status']) {
+          this.isForm = false;
+          this.isLoginSuccessful = true;
+          this.userFullName = `${res['user'].name} ${res['user'].lastName}`;
+        }
+      });
+    }
+
     this.loginForm = this.formBuilder.group({
-        firstName: ['', [Validators.required]],
-        lastName: ['', [Validators.required]],
         email: ['', [Validators.required, Validators.email]],
-        password: ['', [Validators.required, Validators.minLength(6)]],
-        confirmPswrd: ['', [Validators.required, Validators.minLength(6)]]
+        password: ['', [Validators.required]]
     });
 }
 
@@ -28,16 +45,33 @@ export class LoginComponent implements OnInit {
     return this.loginForm.controls;
   }
 
-  get isPasswordsEqual () {
-    return this.form.password.value === this.form.confirmPswrd.value && !!this.form.confirmPswrd.value;
-  }
-
-  login() {
-    this.logined = true;
-    if (this.loginForm.invalid || !this.isPasswordsEqual) {
+    login() {
+    this.isShowErrors = true;
+    this.isLoader = this.loginForm.valid;
+    if (this.loginForm.invalid) {
         return;
     }
-    // logic .....
+    this.userService.login(this.form.email.value, this.form.password.value).subscribe(res => {
+      if (res['status']) {
+        this.userFullName = `${res['user'].name} ${res['user'].lastName}`;
+        this.isForm = false;
+        this.isLoginSuccessful = true;
+        this.storageService.setItem(res['token']);
+      } else {
+        this.isForm = false;
+        this.isWrongCredentials = true;
+      }
+    });
+  }
+
+  backToLogin () {
+    this.isShowErrors = false;
+    this.isLoader = false;
+    this.isForm = true;
+    this.isLoginSuccessful = false;
+    this.isWrongCredentials = false;
+    this.userFullName = '';
+    this.loginForm.reset();
   }
 
 }

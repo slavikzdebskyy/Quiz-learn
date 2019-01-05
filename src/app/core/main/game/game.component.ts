@@ -42,7 +42,7 @@ export class GameComponent implements OnInit {
 
   startGame() {
     this.isStartOfGame = false;
-    this.wordsForGame = this.dictionaryService.getRandomWordsForGame(this.containerSize, 'all', 2);
+    this.wordsForGame = this.dictionaryService.getRandomWordsForGame(this.containerSize, 'all', 3);
     this.startTimer();
   }
 
