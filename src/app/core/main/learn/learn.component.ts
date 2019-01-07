@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { WordForQuiz } from 'src/app/shared/models/word.model';
+import { WordForQuiz, Word } from 'src/app/shared/models/word.model';
 import { DictionaryService } from './../../../shared/services/dictionary.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { DictionaryService } from './../../../shared/services/dictionary.service
 })
 export class LearnComponent implements OnInit {
 
-  questions: WordForQuiz[];
+  questions: WordForQuiz[] = [];
   questionIndex = 0;
   loadingWidth = 0;
   progressWidth = 100;
@@ -17,12 +17,14 @@ export class LearnComponent implements OnInit {
   isRight = true;
   wrongAnswer = '';
   currWrongAnswers = 0;
+  wordsCount = 7;
+  dictionary: Word[];
 
   constructor(private dictionaryService: DictionaryService) { }
 
   ngOnInit() {
-    this.questions = this.dictionaryService.getRandomWordsForQuizByTitle();
-    this.loadingWidth = ((this.questionIndex + 1) / this.questions.length) * 100;
+    this.getRandomWordsForQuizByTitle();
+    this.loadingWidth = Math.round(((this.questionIndex + 1) / this.questions.length) * 100);
   }
 
   checkAnswer (answer) {
@@ -43,8 +45,54 @@ export class LearnComponent implements OnInit {
     this.wrongAnswer = '';
   }
 
-  getTranslate (word, isUa) {
-      return this.dictionaryService.getTranslate(word, isUa);
+  getTranslate (word: string, isUa: boolean = false) {
+    return this.dictionaryService.getTranslate(word, isUa);
+  }
+
+  getRandomWordsForQuizByTitle (title: string = 'all', count: number = this.wordsCount) {
+    this.dictionaryService.getWordsByTitle(title).subscribe(res => {
+      if (res['status']) {
+        const wordsByTitle = res['words'];
+        this.dictionary = res['words'];
+        const lang = Math.floor(Math.random() * 2) ? 'ua' : 'eng';
+        const langOpposite = lang === 'ua' ? 'eng' : 'ua';
+        const indexes = [];
+        const result = [];
+        for (let i = 0; i < count; i++) {
+          let isUnique = true;
+          while (isUnique) {
+            const randomIndex = Math.floor(Math.random() * (wordsByTitle.length - 1));
+            if (!indexes.includes(randomIndex)) {
+              indexes.push(randomIndex);
+              const obj: WordForQuiz = {
+                word : wordsByTitle[randomIndex][lang],
+                answers : this.getFourAnswersIndexes(randomIndex, wordsByTitle, langOpposite),
+                answer : wordsByTitle[randomIndex][langOpposite]
+              };
+              result.push(obj);
+              isUnique = false;
+            }
+          }
+        }
+        this.questions = result;
+      }
+    });
+  }
+
+  getFourAnswersIndexes (currIndex: number, wordsArray: Word[], langOpposite: string): string[] {
+    const result = [];
+    for (let i = 0; i < 4; i++) {
+      let isUnique = true;
+      while (isUnique) {
+        const randomIndex = Math.floor(Math.random() * (wordsArray.length - 1));
+        if (!result.includes(randomIndex) && randomIndex !== currIndex) {
+          result.push(wordsArray[randomIndex][langOpposite]);
+          isUnique = false;
+        }
+      }
+    }
+    result[Math.floor(Math.random() * 4)] = wordsArray[currIndex][langOpposite];
+    return result;
   }
 
 

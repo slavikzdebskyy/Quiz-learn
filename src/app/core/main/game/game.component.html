@@ -3,19 +3,22 @@
     <span>Time:</span>
     <span>{{time}}</span>
   </div>
-  <div class="game-area" #gameArea>
+  <div
+    class="game-area"
+    #gameArea
+  >
     <div
-      *ngFor="let word of wordsForGame"
-      class="drager"
-      ngDraggable
-      [ngClass]=""
-      [style.transform]="'translate(' + word.offset.x + 'px, ' + word.offset.y + 'px)'"
-      [position]="word.offset"
-      [zIndex]="word.offset.z"
-      (started)="dragStart(word.offset, word.hiddenWord)"
-      (stopped)="gragStop(word.offset)"
-      (mouseup)="checkWords(word.displayWord)"
-    >
+    *ngFor="let word of wordsForGame"
+    class="drager"
+    ngDraggable
+    [ngClass]=""
+    [style.transform]="'translate(' + word.offset.x + 'px, ' + word.offset.y + 'px)'"
+    [position]="word.offset"
+    [zIndex]="word.offset.z"
+    (started)="dragStart(word.offset, word.hiddenWord)"
+    (stopped)="gragStop(word.offset)"
+    (mouseup)="checkWords(word.displayWord)"
+  >
       <span class="drager-item">{{word.displayWord}}</span>
     </div>
   </div>

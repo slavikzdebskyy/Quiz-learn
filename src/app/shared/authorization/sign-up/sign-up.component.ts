@@ -41,6 +41,9 @@ export class SignUpComponent implements OnInit {
 
   signUp() {
     this.isShowFormsErrors = true;
+    if (this.signUpForm.invalid) {
+      return;
+    }
     this.isLoader = true;
     this.user = new User( this.form.firstName.value, this.form.lastName.value,
                           this.form.email.value, this.form.password.value,

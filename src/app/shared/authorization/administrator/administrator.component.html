@@ -1,0 +1,83 @@
+<div class="administrator-container">
+  <form
+    [formGroup]="addWordForm"
+    (ngSubmit)="addNewWord()"
+    *ngIf="!isAdminsOrWordForm"
+  >
+    <h2>Add new word</h2>
+    <label>
+      <input placeholder=" " type="text" formControlName="eng" [ngClass]="{ 'not-valid': isShowFormsErrors && formWord.eng.errors }">
+      <span class="placeholder">Type word in English...</span>
+      <span class="error-validation"  *ngIf="isShowFormsErrors && formWord['eng'].errors">Enter correct first name</span>
+    </label>
+    <label>
+      <input placeholder=" " type="text" formControlName="ua" [ngClass]="{ 'not-valid': isShowFormsErrors && formWord.ua.errors }">
+      <span class="placeholder">Type word in Ukrainian...</span>
+      <span class="error-validation"  *ngIf="isShowFormsErrors && formWord['ua'].errors">Enter correct last name</span>
+    </label>
+    <select formControlName="title" [ngClass]="{ 'not-valid': isShowFormsErrors && formWord.title.errors }">
+      <option value="" class="option-placeholder">Select title...</option>
+      <option
+        *ngFor="let title of titles"
+        [value]="title"
+      >
+      {{title}}
+      </option>
+    </select>
+    <span class="error-validation" *ngIf="isShowFormsErrors && formWord['title'].errors">Enter country</span>
+    <button type="submit">
+      <span *ngIf="isLoader">
+        <i class="fa fa-spinner fa-spin"></i>
+        Adding ...
+      </span>
+      <span *ngIf="!isLoader">
+        Add word
+      </span>
+    </button>
+  </form>
+  <form
+    [formGroup]="adminsForm"
+    (ngSubmit)="submitAdmin()"
+    *ngIf="isAdminsOrWordForm"
+  >
+    <h2 *ngIf="!isLoginOrSignUp">Sign up Admin Form</h2>
+    <h2 *ngIf="isLoginOrSignUp">Login Admin Form</h2>
+    <label>
+      <input placeholder=" " type="text" formControlName="nickName" [ngClass]="{ 'not-valid': isShowFormsErrors && formAdmins.nickName.errors }">
+      <span class="placeholder">Type your first nickname...</span>
+      <span class="error-validation"  *ngIf="isShowFormsErrors && formAdmins['nickName'].errors">Enter nickname</span>
+    </label>
+    <label>
+      <input placeholder=" " type="password" formControlName="password" [ngClass]="{ 'not-valid': submitted && formAdmins.password.errors }">
+      <span class="placeholder">Type your password...</span>
+      <span class="error-validation" *ngIf="isShowFormsErrors && formAdmins['password'].errors">Enter password</span>
+    </label>
+    <button type="submit">
+      <div *ngIf="!isLoginOrSignUp">
+        <span *ngIf="isLoader">
+          <i class="fa fa-spinner fa-spin"></i>
+          Sign uping ...
+        </span>
+        <span *ngIf="!isLoader">
+          Sign up
+        </span>
+      </div>
+      <div *ngIf="isLoginOrSignUp">
+        <span *ngIf="isLoader">
+          <i class="fa fa-spinner fa-spin"></i>
+          Logining ...
+        </span>
+        <span *ngIf="!isLoader">
+          Login
+        </span>
+      </div>
+    </button>
+  </form>
+</div>
+
+
+
+
+
+
+

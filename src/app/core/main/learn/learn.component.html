@@ -9,7 +9,7 @@
       <div class="loading red" [style.width.%]="progressWidth"> </div>
     </div>
   </div>
-  <div class="question-contaianer">
+  <div class="question-contaianer"  *ngIf="questions.length">
     <div class="question"  *ngIf="isQuestion">
         <h3>{{questions[questionIndex].word}}</h3>
         <div class="answers-container">

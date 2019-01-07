@@ -5,13 +5,19 @@
 export const environment = {
   production: false,
   local: {
-    saveUser: 'http://localhost:3000/users/signup',
-    loginUser: 'http://localhost:3000/users/login',
-    acountUser: 'http://localhost:3000/users/getuser',
-    logOutUser: 'http://localhost:3000/users/logout'
+    saveUser: '/users/signup',
+    loginUser: '/users/login',
+    acountUser: '/users/getuser',
+    logOutUser: '/users/logout',
+    saveAdmin: '/administrators/newadmin',
+    loginAdmin: '/administrators/loginadmin',
+    addWord: '/dictionary/newword',
+    getWordsByTitle: '/dictionary/bytitle'
   },
   defaultToken: 'TdhfDHsue647sf2skJDhuH739kdf',
-  localStorageName: 'usersToken'
+  localStorageName: 'usersToken',
+  apiBaseUrlServer: 'http://localhost:3000'
+  // apiBaseUrlServer: '  https://quiz-learn.herokuapp.com'
 };
 
 /*

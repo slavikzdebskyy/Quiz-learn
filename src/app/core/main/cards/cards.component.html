@@ -5,7 +5,7 @@
       <div class="loading" [style.width.%]="loadingWidth"> </div>
     </div>
   </div>
-  <div class="flip-container">
+  <div class="flip-container" *ngIf="words.length">
     <div class="card" [ngClass]="openOrCloseCardClassName" (click)="flipCard()"  >
         <div class="frontpage">
             <h3>{{words[slideIndex][lang]}}</h3>

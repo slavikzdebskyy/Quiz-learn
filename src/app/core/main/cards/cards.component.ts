@@ -13,15 +13,21 @@ export class CardsComponent implements OnInit {
   lang: string = Math.floor(Math.random() * 2) ? 'ua' : 'eng';
   langOpposite: string = this.lang === 'ua' ? 'eng' : 'ua';
   slideIndex = 0;
-  words: Word[];
+  words: Word[] = [];
   loadingWidth = 0;
 
 
   constructor(private dictionaryService: DictionaryService) { }
 
   ngOnInit() {
-    this.words = this.dictionaryService.getWordsByTitle('airport');
-    this.loadingWidth = ((this.slideIndex + 1) / this.words.length) * 100;
+    this.dictionaryService.getWordsByTitle('airport').subscribe(res => {
+      console.log(res);
+      if (res['status']) {
+        this.words = res['words'];
+        console.log(this.words);
+        this.loadingWidth = ((this.slideIndex + 1) / this.words.length) * 100;
+      }
+    });
   }
 
   flipCard () {

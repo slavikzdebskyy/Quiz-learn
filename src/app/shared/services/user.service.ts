@@ -9,44 +9,38 @@ export class UserService {
 
   constructor(private httpClient: HttpClient, private storageService: StorageService) {	}
 
-  user: User;
   private endpoints: any = environment.local;
-  private defaultToken: string = environment.defaultToken;
+  private apiBaseUrlServer: string = environment.apiBaseUrlServer;
+
+
 
   addNewUser (user: User) {
-    const headers = {headers : this.addHeaders()};
-    return this.httpClient.post(this.endpoints.saveUser, user, headers);
+    // const headers = {'headers' : this.addHeaders()};
+    return this.httpClient.post(`${this.apiBaseUrlServer}${this.endpoints.saveUser}`, user);
  }
 
   login (email: string, password: string) {
-    const headers = {headers : this.addHeaders()};
+    const headers = {'headers' : this.addHeaders()};
     const data = {'email': email, 'password': password};
-    return this.httpClient.post(this.endpoints.loginUser, data, headers);
+    return this.httpClient.post(`${this.apiBaseUrlServer}${this.endpoints.loginUser}`, data);
   }
 
-  getUserByToken () {
-    const headers = {headers : this.addHeaders()};
-    return this.httpClient.get<User>(this.endpoints.acountUser, headers);
+  getUserByToken (token) {
+    const headers = {'headers' : this.addHeaders()};
+    const data = {'token': token};
+    return this.httpClient.post(`${this.apiBaseUrlServer}${this.endpoints.acountUser}`, data);
   }
 
   logout () {
-    const headers = {headers : this.addHeaders()};
+    // const headers = this.addHeaders();
     const token = {'token': this.storageService.getItem()};
     this.storageService.removeItem();
-    return this.httpClient.post(this.endpoints.logOutUser, token, headers);
+    return this.httpClient.post(`${this.apiBaseUrlServer}${this.endpoints.logOutUser}`, token);
   }
 
-  addHeaders () {
-    let token = this.storageService.getItem();
-    if (!token) {
-      token = this.defaultToken;
-    }
-    return new HttpHeaders ({
-      'Contetnt-Type' : 'application/json',
-      'Authorization' : token,
-      'Access-Control-Allow-Origin' : '*',
-      // 'Access-Control-Allow-Origin' : 'http://localhost:3000'
-    });
+  addHeaders(): HttpHeaders {
+    return  new HttpHeaders()
+      .set('Content-Type', 'application/json; charset=utf-8')
+      .set('Authorization', this.storageService.getItem());
   }
-
 }

@@ -23,7 +23,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
 
     if (this.storageService.getItem()) {
-      this.userService.getUserByToken().subscribe(res => {
+      this.userService.getUserByToken(this.storageService.getItem()).subscribe(res => {
         if (res['status']) {
           this.isLogined = true;
           this.userFullName = `${res['user'].name} ${res['user'].lastName}`;
@@ -33,10 +33,13 @@ export class HeaderComponent implements OnInit {
 
     this.storageService.watchStorage().subscribe(result => {
       if (result) {
-        this.userService.getUserByToken().subscribe(res => {
+        this.userService.getUserByToken(this.storageService.getItem()).subscribe(res => {
           if (res['status']) {
             this.isLogined = true;
             this.userFullName = `${res['user'].name} ${res['user'].lastName}`;
+          } else {
+            this.isLogined = false;
+            this.userFullName = '';
           }
         });
       }
@@ -47,8 +50,10 @@ export class HeaderComponent implements OnInit {
     this.userService.logout().subscribe(res => {
       if (res['status']) {
         this.isLogined = false;
-        this.router.navigate(['/']);
+        this.router.navigate(['/login']);
       }
     });
   }
+
+
 }

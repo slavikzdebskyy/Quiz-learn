@@ -5,11 +5,13 @@ import { RouterModule } from '@angular/router';
 import {  SocialLoginModule, AuthServiceConfig } from 'angular5-social-login';
 
 import getAuthServiceConfigs from './get-auth-service-configs';
+import { UserService } from '../services/user.service';
+import { AdministratorService } from '../services/administrator.service';
 
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { LoginComponent } from './login/login.component';
 import { SocialAuthComponent } from './social-auth/social-auth.component';
-import { UserService } from '../services/user.service';
+import { AdministratorComponent } from './administrator/administrator.component';
 
 @NgModule({
   imports: [
@@ -23,13 +25,14 @@ import { UserService } from '../services/user.service';
     LoginComponent,
     SocialAuthComponent
   ],
-  declarations: [SignUpComponent, LoginComponent, SocialAuthComponent],
+  declarations: [SignUpComponent, LoginComponent, SocialAuthComponent, AdministratorComponent],
   providers: [
     {
       provide: AuthServiceConfig,
       useFactory: getAuthServiceConfigs
     },
-    UserService
+    UserService,
+    AdministratorService
   ]
 })
 export class AuthorizationModule { }

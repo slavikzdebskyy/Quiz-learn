@@ -25,8 +25,9 @@ export class LoginComponent implements OnInit {
     private storageService: StorageService) { }
 
   ngOnInit () {
-    if (this.storageService.getItem()){
-      this.userService.getUserByToken().subscribe(res => {
+    const userToken = this.storageService.getItem();
+    if (userToken) {
+      this.userService.getUserByToken(userToken).subscribe(res => {
         if (res['status']) {
           this.isForm = false;
           this.isLoginSuccessful = true;

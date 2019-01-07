@@ -15,8 +15,9 @@ export class GameComponent implements OnInit {
   isEndOfGame = false;
   isStartOfGame = true;
   containerSize: ElementSize;
-  wordsForGame: WordForGame[];
+  wordsForGame: WordForGame[] = [];
   time = 0;
+  wordsCount = 7;
   intervalId: any;
 
   constructor(private dictionaryService: DictionaryService) { }
@@ -42,7 +43,7 @@ export class GameComponent implements OnInit {
 
   startGame() {
     this.isStartOfGame = false;
-    this.wordsForGame = this.dictionaryService.getRandomWordsForGame(this.containerSize, 'all', 3);
+    this.getRandomWordsForGame(this.containerSize, 'all', this.wordsCount);
     this.startTimer();
   }
 
@@ -73,6 +74,51 @@ export class GameComponent implements OnInit {
     this.isStartOfGame = true;
     this.time = 0;
     this.stopTimer();
+  }
+
+  getRandomWordsForGame (size: ElementSize, title: string = 'all', count: number = 10) {
+    this.dictionaryService.getWordsByTitle(title).subscribe(res => {
+      console.log(res);
+      if (res['status']) {
+        const wordsByTitle = res['words'];
+        const result = [];
+        const indexes = [];
+        for (let i = 0; i < count; i++) {
+          let isUnique = true;
+          while (isUnique) {
+            const randomIndex = Math.floor(Math.random() * (wordsByTitle.length - 1));
+            if (!indexes.includes(randomIndex)) {
+              indexes.push(randomIndex);
+              const offsetUa: Offset = {
+                x : Math.floor(Math.random() * (size.width - 150)),
+                y : Math.floor(Math.random() * (size.height - 50)),
+                z : 1
+              };
+              const offsetEng: Offset = {
+                x : Math.floor(Math.random() * (size.width - 150)),
+                y : Math.floor(Math.random() * (size.height - 50)),
+                z : 1
+              };
+              const objUa: WordForGame = {
+                displayWord : wordsByTitle[randomIndex].ua,
+                hiddenWord : wordsByTitle[randomIndex].eng,
+                offset : offsetUa
+              };
+              const objEng: WordForGame = {
+                displayWord : wordsByTitle[randomIndex].eng,
+                hiddenWord : wordsByTitle[randomIndex].ua,
+                offset : offsetEng
+              };
+              result.push(objUa);
+              result.push(objEng);
+              isUnique = false;
+            }
+          }
+        }
+        this.wordsForGame = result;
+
+      }
+    });
   }
 
 }

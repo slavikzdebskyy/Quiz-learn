@@ -12,7 +12,7 @@ export class WriteComponent implements OnInit {
   constructor(private dictionaryService: DictionaryService) { }
 
 
-  questions: Word[];
+  questions: Word[] = [];
   questionIndex = 0;
   isQuestion = true;
   isRight = true;
@@ -25,7 +25,11 @@ export class WriteComponent implements OnInit {
   lefttWidth = 0;
 
   ngOnInit() {
-    this.questions = this.dictionaryService.getWordsByTitle('airport');
+    this.dictionaryService.getWordsByTitle('airport').subscribe(res => {
+      if (res['status']) {
+        this.questions = res['words'];
+      }
+    });
   }
 
   checkAnswer (usersAnswer) {
