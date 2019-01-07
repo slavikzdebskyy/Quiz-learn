@@ -21,10 +21,8 @@ export class CardsComponent implements OnInit {
 
   ngOnInit() {
     this.dictionaryService.getWordsByTitle('airport').subscribe(res => {
-      console.log(res);
       if (res['status']) {
         this.words = res['words'];
-        console.log(this.words);
         this.loadingWidth = ((this.slideIndex + 1) / this.words.length) * 100;
       }
     });

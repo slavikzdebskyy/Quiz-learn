@@ -78,7 +78,6 @@ export class GameComponent implements OnInit {
 
   getRandomWordsForGame (size: ElementSize, title: string = 'all', count: number = 10) {
     this.dictionaryService.getWordsByTitle(title).subscribe(res => {
-      console.log(res);
       if (res['status']) {
         const wordsByTitle = res['words'];
         const result = [];

@@ -23,12 +23,13 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
 
     if (this.storageService.getItem()) {
-      this.userService.getUserByToken(this.storageService.getItem()).subscribe(res => {
-        if (res['status']) {
-          this.isLogined = true;
-          this.userFullName = `${res['user'].name} ${res['user'].lastName}`;
-        }
-      });
+      this.userService.getUserByToken(this.storageService.getItem())
+      .subscribe(res => {
+          if (res['status']) {
+            this.isLogined = true;
+            this.userFullName = `${res['user'].name} ${res['user'].lastName}`;
+          }
+        });
     }
 
     this.storageService.watchStorage().subscribe(result => {

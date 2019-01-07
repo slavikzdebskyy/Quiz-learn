@@ -6,7 +6,7 @@
 .administrator-container {
   @include flex(column, center, center);
   width: 100%;
-  min-height: 600px;
+  min-height: 900px;
   background: linear-gradient(215deg, #3ccfcf, #2b779e, #3ccfcf);
   background-size: 600% 600%;
   animation: bg-anim 19s ease infinite;

@@ -20,13 +20,13 @@ export class UserService {
  }
 
   login (email: string, password: string) {
-    const headers = {'headers' : this.addHeaders()};
+    // const headers = {'headers' : this.addHeaders()};
     const data = {'email': email, 'password': password};
     return this.httpClient.post(`${this.apiBaseUrlServer}${this.endpoints.loginUser}`, data);
   }
 
   getUserByToken (token) {
-    const headers = {'headers' : this.addHeaders()};
+    // const headers = {'headers' : this.addHeaders()};
     const data = {'token': token};
     return this.httpClient.post(`${this.apiBaseUrlServer}${this.endpoints.acountUser}`, data);
   }
@@ -38,9 +38,9 @@ export class UserService {
     return this.httpClient.post(`${this.apiBaseUrlServer}${this.endpoints.logOutUser}`, token);
   }
 
-  addHeaders(): HttpHeaders {
-    return  new HttpHeaders()
-      .set('Content-Type', 'application/json; charset=utf-8')
-      .set('Authorization', this.storageService.getItem());
-  }
+  // addHeaders(): HttpHeaders {
+  //   return  new HttpHeaders()
+  //     .set('Content-Type', 'application/json; charset=utf-8')
+  //     .set('Authorization', this.storageService.getItem());
+  // }
 }

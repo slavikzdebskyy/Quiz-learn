@@ -3,7 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
+  production: true,
   local: {
     saveUser: '/users/signup',
     loginUser: '/users/login',
@@ -16,8 +16,8 @@ export const environment = {
   },
   defaultToken: 'TdhfDHsue647sf2skJDhuH739kdf',
   localStorageName: 'usersToken',
-  apiBaseUrlServer: 'http://localhost:3000'
-  // apiBaseUrlServer: '  https://quiz-learn.herokuapp.com'
+  // apiBaseUrlServer: 'http://localhost:3000'
+  apiBaseUrlServer: 'https://quiz-learn.herokuapp.com'
 };
 
 /*
