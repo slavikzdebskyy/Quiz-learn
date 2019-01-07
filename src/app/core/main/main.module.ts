@@ -6,8 +6,6 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { AngularDraggableModule } from 'angular2-draggable';
 
-import { DictionaryService } from 'src/app/shared/services/dictionary.service';
-
 import { MainComponent } from './main.component';
 import { MainNavbarComponent } from './main-navbar/main-navbar.component';
 import { CardsComponent } from './cards/cards.component';
@@ -31,7 +29,6 @@ import { GameComponent } from './game/game.component';
     MainNavbarComponent,
     LearnComponent
   ],
-  providers: [DictionaryService],
   declarations: [
     MainComponent,
     MainNavbarComponent,

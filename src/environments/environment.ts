@@ -15,7 +15,8 @@ export const environment = {
     getWordsByTitle: '/dictionary/bytitle'
   },
   defaultToken: 'TdhfDHsue647sf2skJDhuH739kdf',
-  localStorageName: 'usersToken',
+  localStorageDBKey: 'usersToken',
+  localStorageSocialKey: 'usersSocialToken',
   // apiBaseUrlServer: 'http://localhost:3000'
   apiBaseUrlServer: 'https://quiz-learn.herokuapp.com'
 };

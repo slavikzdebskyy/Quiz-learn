@@ -12,12 +12,10 @@ export class AdministratorService {
   private apiBaseUrlServer: string = environment.apiBaseUrlServer;
 
   addNewAdmin (admin: Admin) {
-    // const headers = {'headers' : this.addHeaders()};
     return this.httpClient.post(`${this.apiBaseUrlServer}${this.endpoints.saveAdmin}`, admin);
  }
 
  loginAdmin (admin: Admin) {
-  // const headers = {'headers' : this.addHeaders()};
   return this.httpClient.post(`${this.apiBaseUrlServer}${this.endpoints.loginAdmin}`, admin);
 }
 

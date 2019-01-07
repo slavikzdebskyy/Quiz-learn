@@ -5,7 +5,6 @@ import { RouterModule } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 
 import { MainModule } from './main/main.module';
-import { StorageService } from '../shared/services/storage.service';
 
 
 @NgModule({
@@ -17,7 +16,6 @@ import { StorageService } from '../shared/services/storage.service';
   exports: [
     HeaderComponent
   ],
-  declarations: [HeaderComponent],
-  providers: [StorageService]
+  declarations: [HeaderComponent]
 })
 export class CoreModule { }

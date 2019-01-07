@@ -6,23 +6,27 @@ import { environment } from 'src/environments/environment';
 export class StorageService {
 
   private storageSub = new Subject<boolean>();
-  private localStorageName: string = environment.localStorageName;
+  private localStorageDBKey: string = environment.localStorageDBKey;
+  private localStorageSocialKey: string = environment.localStorageSocialKey;
 
   watchStorage(): Observable<any> {
     return this.storageSub.asObservable();
   }
 
-  setItem(data: any): void {
-    localStorage.setItem(this.localStorageName, data);
+  setItem(isSocial: boolean, data: any): void {
+    const key = isSocial ? this.localStorageSocialKey : this.localStorageDBKey;
+    localStorage.setItem(key, data);
     this.storageSub.next(true);
   }
 
-  removeItem(): void {
-    localStorage.removeItem(this.localStorageName);
+  removeItem(isSocial: boolean): void {
+    const key = isSocial ? this.localStorageSocialKey : this.localStorageDBKey;
+    localStorage.removeItem(key);
     this.storageSub.next(true);
   }
 
-  getItem(): string {
-    return localStorage.getItem(this.localStorageName);
+  getItem(isSocial: boolean): string {
+    const key = isSocial ? this.localStorageSocialKey : this.localStorageDBKey;
+    return localStorage.getItem(key);
   }
 }

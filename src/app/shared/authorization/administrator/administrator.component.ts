@@ -55,7 +55,6 @@ export class AdministratorComponent implements OnInit {
     }
     this.newWord = {'eng' : this.formWord.eng.value, 'ua' : this.formWord.ua.value, 'title' : this.formWord.title.value};
     this.dictionaryService.addNewWord(this.newWord).subscribe(res => {
-      console.log('New word =>', res);
       this.addWordForm.reset();
     });
   }

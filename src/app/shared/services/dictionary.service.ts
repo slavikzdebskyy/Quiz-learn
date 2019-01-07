@@ -20,7 +20,6 @@ export class DictionaryService {
     });
   }
 
-
   addNewWord (word: Word) {
     return this.httpClient.post(`${this.apiBaseUrlServer}${this.endpoints.addWord}`, word);
   }

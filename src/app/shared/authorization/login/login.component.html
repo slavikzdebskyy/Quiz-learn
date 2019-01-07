@@ -24,7 +24,7 @@
         Login
       </span>
     </button>
-    <app-social-auth></app-social-auth>
+    <app-social-auth (userDidLogined)="isLogined($event)"></app-social-auth>
   </form>
   <div class="congrat" *ngIf="isLoginSuccessful">
     <h2>Welcome, <br> <b>{{userFullName}}</b></h2>

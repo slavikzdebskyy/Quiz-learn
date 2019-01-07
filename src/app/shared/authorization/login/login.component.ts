@@ -10,7 +10,6 @@ import { StorageService } from '../../services/storage.service';
 })
 export class LoginComponent implements OnInit {
 
-
   loginForm: FormGroup;
   isShowErrors = false;
   isLoader = false;
@@ -18,6 +17,7 @@ export class LoginComponent implements OnInit {
   isLoginSuccessful = false;
   isWrongCredentials = false;
   userFullName: string;
+  dataBind: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
     private storageService: StorageService) { }
 
   ngOnInit () {
-    const userToken = this.storageService.getItem();
+    const userToken = this.storageService.getItem(false);
     if (userToken) {
       this.userService.getUserByToken(userToken).subscribe(res => {
         if (res['status']) {
@@ -46,7 +46,13 @@ export class LoginComponent implements OnInit {
     return this.loginForm.controls;
   }
 
-    login() {
+  isLogined (name) {
+    this.userFullName = name;
+    this.isForm = false;
+    this.isLoginSuccessful = true;
+    }
+
+  login() {
     this.isShowErrors = true;
     this.isLoader = this.loginForm.valid;
     if (this.loginForm.invalid) {
@@ -57,7 +63,7 @@ export class LoginComponent implements OnInit {
         this.userFullName = `${res['user'].name} ${res['user'].lastName}`;
         this.isForm = false;
         this.isLoginSuccessful = true;
-        this.storageService.setItem(res['token']);
+        this.storageService.setItem(false, res['token']);
       } else {
         this.isForm = false;
         this.isWrongCredentials = true;

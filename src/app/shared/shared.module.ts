@@ -8,6 +8,8 @@ import { AuthorizationModule } from './authorization/authorization.module';
     CommonModule,
     AuthorizationModule
   ],
-  declarations: []
+  declarations: [],
+  providers: [
+  ],
 })
 export class SharedModule { }

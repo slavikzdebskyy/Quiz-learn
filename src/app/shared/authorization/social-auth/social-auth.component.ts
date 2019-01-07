@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { AuthService, FacebookLoginProvider, GoogleLoginProvider } from 'angular5-social-login';
+import { StorageService } from '../../services/storage.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-social-auth',
@@ -8,10 +10,20 @@ import { AuthService, FacebookLoginProvider, GoogleLoginProvider } from 'angular
 })
 export class SocialAuthComponent implements OnInit {
 
-  constructor( private socialAuthService: AuthService) { }
+  constructor(
+    private socialAuthService: AuthService,
+    private storageService: StorageService,
+    private userService: UserService) { }
+
+    @Output()
+    userDidLogined = new EventEmitter();
 
   ngOnInit() {
 
+  }
+
+  postUserName (name: string) {
+    this.userDidLogined.emit(name);
   }
 
   socialSignIn (socialPlatform: string) {
@@ -26,10 +38,14 @@ export class SocialAuthComponent implements OnInit {
     }
     this.socialAuthService.signIn(socialPlatformProvider)
       .then(userData => {
-        console.log(socialPlatform + ' sign in data : ' , userData);
-        // Now sign-in with userData
+        if (userData.name) {
+          const user = JSON.stringify(userData);
+          this.storageService.setItem(true, user);
+          this.postUserName(userData.name);
+        }
       }
     );
+
   }
 
 }
